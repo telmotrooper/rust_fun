@@ -1,11 +1,14 @@
 use actix_web::middleware::{Compress, Logger};
 use actix_web::{App, HttpServer};
+use dotenv::dotenv;
 use env_logger;
 
 mod routes;
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()> {
+    dotenv().ok();
+
     let address = "127.0.0.1:8000";
 
     std::env::set_var("RUST_LOG", "actix_web=info");
