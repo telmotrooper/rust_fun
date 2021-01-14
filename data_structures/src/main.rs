@@ -20,10 +20,16 @@ struct BinarySearchTree<T> {
     root: Node<T>
 }
 
-fn main() {
-    let bst: BinarySearchTree<i64> = BinarySearchTree {
-        root: Node::new(256)
-    };
+impl<T> BinarySearchTree<T> {
+    fn new(value: T) -> BinarySearchTree<T> {
+        BinarySearchTree {
+            root: Node::new(value)
+        }
+    }
+}
 
-    println!("Hello, world!");
+fn main() {
+    let bst: BinarySearchTree<i64> = BinarySearchTree::new(256);
+
+    println!("{:?}", bst.root.value);
 }
