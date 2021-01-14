@@ -6,8 +6,8 @@ struct Node<T> {
     right_child: Option<Rc<Node<T>>>
 }
 
-impl Node<i64> {
-    fn new(value: i64) -> Node<i64> {
+impl<T> Node<T> {
+    fn new(value: T) -> Node<T> {
         Node {
             value,
             left_child: None,
