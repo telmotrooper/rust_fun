@@ -26,6 +26,18 @@ impl<T> BinarySearchTree<T> {
             root: Node::new(value)
         }
     }
+
+    fn insert(self: &Self, value: T) {
+        let new_node: Node<T> = Node::new(value);
+
+        let current_node= &self.root;
+
+        // if &new_node.value > &current_node.value {
+        //     if let Some(left_child) = &current_node.left_child {
+        //         // TODO
+        //     }
+        // }
+    }
 }
 
 fn main() {
