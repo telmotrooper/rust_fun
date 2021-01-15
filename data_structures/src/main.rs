@@ -1,4 +1,5 @@
 use std::rc::Rc;
+use std::cmp::PartialOrd;
 
 struct Node<T> {
     value: T,
@@ -20,7 +21,9 @@ struct BinarySearchTree<T> {
     root: Node<T>
 }
 
-impl<T> BinarySearchTree<T> {
+impl<T> BinarySearchTree<T>
+where T: PartialOrd
+{
     fn new(value: T) -> BinarySearchTree<T> {
         BinarySearchTree {
             root: Node::new(value)
@@ -32,11 +35,11 @@ impl<T> BinarySearchTree<T> {
 
         let current_node= &self.root;
 
-        // if &new_node.value > &current_node.value {
-        //     if let Some(left_child) = &current_node.left_child {
-        //         // TODO
-        //     }
-        // }
+        if new_node.value > current_node.value {
+            if let Some(left_child) = &current_node.left_child {
+                // TODO
+            }
+        }
     }
 }
 
