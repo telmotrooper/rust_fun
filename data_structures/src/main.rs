@@ -30,7 +30,7 @@ where T: PartialOrd
         }
     }
 
-    fn insert(self: &mut Self, value: T) {
+    fn insert(&mut self, value: T) {
         let new_node: Node<T> = Node::new(value);
 
         let mut current_node: &Option<Box<Node<T>>> = &self.root;
