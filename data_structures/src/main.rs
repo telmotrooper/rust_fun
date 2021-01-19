@@ -18,42 +18,48 @@ impl<T> Node<T> {
 }
 
 struct BinarySearchTree<T> {
-    root: Box<Node<T>>
+    root: Option<Box<Node<T>>>
 }
 
 impl<T> BinarySearchTree<T>
 where T: PartialOrd
 {
-    fn new(value: T) -> BinarySearchTree<T> {
+    fn new() -> BinarySearchTree<T> {
         BinarySearchTree {
-            root: Box::new(Node::new(value))
+            root: None
         }
     }
 
-    fn insert(self: &Self, value: T) {
+    fn insert(self: &mut Self, value: T) {
         let new_node: Node<T> = Node::new(value);
 
-        let mut current_node= Box::new(&self.root);
+        let mut current_node: &Option<Box<Node<T>>> = &self.root;
 
-        if new_node.value < current_node.value {
-            if let Some(left_child) = &current_node.left_child {
-                todo!()
-                // current_node = left_child;
-            } else {
-                todo!()
-            }
-        } else {
-            if let Some(right_child) = &current_node.right_child {
-                todo!()
-            } else {
-                todo!()
-            }
+        if current_node.is_none() {
+            self.root = Some(Box::new(new_node))
         }
+
+        // if new_node.value < current_node.value {
+        //     if let Some(left_child) = &current_node.left_child {
+        //         todo!()
+        //         // current_node = left_child;
+        //     } else {
+        //         todo!()
+        //     }
+        // } else {
+        //     if let Some(right_child) = &current_node.right_child {
+        //         todo!()
+        //     } else {
+        //         todo!()
+        //     }
+        // }
     }
 }
 
 fn main() {
-    let bst: BinarySearchTree<i64> = BinarySearchTree::new(256);
+    let mut bst: BinarySearchTree<i64> = BinarySearchTree::new();
 
-    println!("{:?}", bst.root.value);
+    bst.insert(256);
+
+    println!("{:?}", bst.root.unwrap().value);
 }
