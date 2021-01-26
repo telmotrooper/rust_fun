@@ -41,14 +41,14 @@ where T: PartialOrd
         }
 
         if new_node.value < current_node.as_ref().unwrap().value { // Less than
-            if let Some(left_child) = &current_node.as_ref().unwrap().left_child {
-                todo!()
+            if current_node.as_ref().unwrap().left_child.is_some() {
+                current_node = &current_node.as_ref().unwrap().left_child;
             } else {
                 todo!()
             }
         } else { // Greater than
-            if let Some(right_child) = &current_node.as_ref().unwrap().right_child {
-                todo!()
+            if current_node.as_ref().unwrap().right_child.is_some() {
+                current_node = &current_node.as_ref().unwrap().right_child;
             } else {
                 todo!()
             }
