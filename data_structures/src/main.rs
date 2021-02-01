@@ -60,7 +60,10 @@ fn main() {
     let mut bst: BinarySearchTree<i64> = BinarySearchTree::new();
 
     bst.insert(256);
-    bst.insert(512);
+    // bst.insert(512);
 
-    println!("{:?}", bst.root.unwrap().value);
+    match bst.root {
+        Some(node) => println!("Root: {:?}", node.value),
+        None => println!("Root: None")
+    };
 }
