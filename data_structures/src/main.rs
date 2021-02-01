@@ -33,29 +33,40 @@ where T: PartialOrd
     fn insert(&mut self, value: T) {
         let new_node: Node<T> = Node::new(value);
 
-        let mut current_node: &Option<Box<Node<T>>> = &self.root;
+        let mut root: &Option<Box<Node<T>>> = &self.root;
 
-        match current_node {
+        let current_node;
+
+        match root {
             None => {
                 self.root = Some(Box::new(new_node));
                 return
             },
-            _ => {}
+            Some(node) => {
+                current_node = node;
+            }
         }
 
-        if new_node.value < current_node.as_ref().unwrap().value { // Less than
-            if current_node.as_ref().unwrap().left_child.is_some() {
-                current_node = &current_node.as_ref().unwrap().left_child;
-            } else {
-                todo!()
-            }
+        if new_node.value < current_node.value { // Less than
+            println!("Less than")
+
         } else { // Greater than
-            if current_node.as_ref().unwrap().right_child.is_some() {
-                current_node = &current_node.as_ref().unwrap().right_child;
-            } else {
-                todo!()
-            }
+            println!("Greater than")
         }
+
+        // if new_node.value < current_node.as_ref().unwrap().value { // Less than
+        //     if current_node.as_ref().unwrap().left_child.is_some() {
+        //         current_node = &current_node.as_ref().unwrap().left_child;
+        //     } else {
+        //         todo!()
+        //     }
+        // } else { // Greater than
+        //     if current_node.as_ref().unwrap().right_child.is_some() {
+        //         current_node = &current_node.as_ref().unwrap().right_child;
+        //     } else {
+        //         todo!()
+        //     }
+        // }
     }
 }
 
@@ -63,7 +74,7 @@ fn main() {
     let mut bst: BinarySearchTree<i64> = BinarySearchTree::new();
 
     bst.insert(256);
-    // bst.insert(512);
+    bst.insert(512);
 
     match bst.root {
         Some(node) => println!("Root: {:?}", node.value),
