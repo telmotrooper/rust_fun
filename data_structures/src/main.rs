@@ -35,9 +35,12 @@ where T: PartialOrd
 
         let mut current_node: &Option<Box<Node<T>>> = &self.root;
 
-        if current_node.is_none() {
-            self.root = Some(Box::new(new_node));
-            return
+        match current_node {
+            None => {
+                self.root = Some(Box::new(new_node));
+                return
+            },
+            _ => {}
         }
 
         if new_node.value < current_node.as_ref().unwrap().value { // Less than
