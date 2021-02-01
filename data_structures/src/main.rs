@@ -35,38 +35,40 @@ where T: PartialOrd
 
         let mut root: &Option<Box<Node<T>>> = &self.root;
 
-        let current_node;
+        let mut current_node;
 
         match root {
-            None => {
-                self.root = Some(Box::new(new_node));
-                return
-            },
             Some(node) => {
                 current_node = node;
+            },
+            None => {
+                self.root = Some(Box::new(new_node));
+                return;
             }
         }
 
         if new_node.value < current_node.value { // Less than
-            println!("Less than")
+            match &current_node.left_child {
+                Some(left_child) => {
+                    current_node = &left_child;
+                },
+                None => {
+                    // current_node.left_child = Some(Box::new(new_node));
+                    println!("#1");
+                }
+            }
 
         } else { // Greater than
-            println!("Greater than")
+            match &current_node.right_child {
+                Some(right_child) => {
+                    current_node = &right_child;
+                },
+                None => {
+                    // current_node.right_child = Some(Box::new(new_node));
+                    println!("#2");
+                }
+            }
         }
-
-        // if new_node.value < current_node.as_ref().unwrap().value { // Less than
-        //     if current_node.as_ref().unwrap().left_child.is_some() {
-        //         current_node = &current_node.as_ref().unwrap().left_child;
-        //     } else {
-        //         todo!()
-        //     }
-        // } else { // Greater than
-        //     if current_node.as_ref().unwrap().right_child.is_some() {
-        //         current_node = &current_node.as_ref().unwrap().right_child;
-        //     } else {
-        //         todo!()
-        //     }
-        // }
     }
 }
 
