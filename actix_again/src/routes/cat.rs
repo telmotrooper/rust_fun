@@ -8,7 +8,10 @@ pub async fn cat() -> impl Responder {
 
     // Still not returning JSON correctly for successful response.
     match response {
-        Ok(v) => web::Json(json!(v.text().await.unwrap())),
+        Ok(v) => {
+            let body = v.text().await.unwrap();
+            web::Json(json!(body))
+        },
         Err(_) => web::Json(json!({ "error": true })),
     }
 }
