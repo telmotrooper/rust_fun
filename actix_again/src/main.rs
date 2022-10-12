@@ -18,6 +18,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .route("/hello", web::get().to(|| async { "Hello, World!" }))
+            .service(routes::cat)
             .service(routes::hello)
             .service(routes::temperature)
     })
