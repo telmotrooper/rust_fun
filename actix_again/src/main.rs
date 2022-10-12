@@ -13,6 +13,8 @@ async fn main() -> std::io::Result<()> {
         .parse::<u16>()
         .unwrap();
 
+    println!("Starting server at: http://localhost:{port}");
+    
     HttpServer::new(|| {
         App::new()
             .route("/hello", web::get().to(|| async { "Hello, World!" }))
